@@ -1,4 +1,4 @@
-### Hi there 👋
+- :heart: Don't be evil [[Learn more on Wikipedia]](https://en.wikipedia.org/wiki/Don%27t_be_evil)
 
 <!--
 **hansdoebel/hansdoebel** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
