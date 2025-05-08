@@ -1,5 +1,5 @@
 - :heart: Don't be evil [[Learn more on Wikipedia]](https://en.wikipedia.org/wiki/Don%27t_be_evil)
-
+- :hamburger: If you have to use A1 more than once for the same thing, write down the recipes and learn how to cook [[Video for context]](https://youtu.be/lxrg28zBv94?t=7567)
 <!--
 **hansdoebel/hansdoebel** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
