@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./scripts/update-versions.sh
+./scripts/validate-readme.sh
