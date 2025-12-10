@@ -1,0 +1,11 @@
+{
+  "name": "hansdoebel",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "husky": "^9.1.7"
+  },
+  "scripts": {
+    "prepare": "husky"
+  }
+}

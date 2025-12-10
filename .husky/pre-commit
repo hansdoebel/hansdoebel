@@ -1,0 +1,12 @@
+#!/bin/bash
+
+README="README.md"
+
+if [[ -f "$README" ]]; then
+    CURRENT_DATE=$(date "+%B %d, %Y")
+
+    if git diff --cached --name-only | grep -q "^$README$"; then
+        sed -i '' "s/\*Last updated on .*/\*Last updated on $CURRENT_DATE\*/" "$README"
+        git add "$README"
+    fi
+fi
