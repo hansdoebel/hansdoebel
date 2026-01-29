@@ -4,19 +4,27 @@ README="README.md"
 TEMP_DIR=$(mktemp -d)
 
 PACKAGES=(
-    "n8n-nodes-bouncer"
+    "n8n-nodes-usebouncer:n8n-nodes-bouncer"
+    "n8n-nodes-codeberg"
+    "n8n-nodes-daytona"
+    "n8n-nodes-dev"
     "n8n-nodes-dida:n8n-nodes-dida365"
     "n8n-nodes-dnsimple"
     "n8n-nodes-docling-serve"
     "n8n-nodes-docusign"
     "n8n-nodes-dub"
+    "n8n-nodes-lancedb"
     "n8n-nodes-monday-pro"
     "n8n-nodes-onoffice:n8n-nodes-onoffice-pro"
     "n8n-nodes-paperless"
+    "n8n-nodes-planeso"
+    "n8n-nodes-postman"
+    "n8n-nodes-propstack"
     "n8n-nodes-sevalla"
     "n8n-nodes-ticketmaster"
     "n8n-nodes-ticktick"
     "n8n-nodes-tripadvisor"
+    "n8n-nodes-zeeg"
 )
 
 fetch_version() {
@@ -59,7 +67,7 @@ for entry in "${PACKAGES[@]}"; do
 
         if [[ -n "$version" ]]; then
             echo "  $readme_pkg: v$version"
-            sed -i '' "s|\($readme_pkg\)](https://github.com/hansdoebel/$readme_pkg)\*\* — v[0-9.]*|\1](https://github.com/hansdoebel/$readme_pkg)** — v$version|g" "$README"
+            sed -i '' "s|\($readme_pkg\)](https://\([^/]*\)/hansdoebel/$readme_pkg)\*\* — v[0-9.]*|\1](https://\2/hansdoebel/$readme_pkg)** — v$version|g" "$README"
         else
             echo "  $readme_pkg: (not found on npm)"
         fi
