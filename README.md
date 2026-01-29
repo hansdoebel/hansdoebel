@@ -2,21 +2,15 @@
 
 ---
 
-#### Latest Projects 
+#### Latest Projects     
 
-## Projects
+- **[qdrant-swift](https://github.com/hansdoebel/qdrant-swift)**             
+A Swift gRPC/REST client for Qdrant vector databases.          
+[*Swift*, *REST*, *gRPC*]     
 
- - **[chunky](https://github.com/hansdoebel/chunky)** — v0.0.1             
-macOS app for document chunking and vector ingestion. Converts PDF, DOCX, and other formats into semantic chunks with Docling, generates embeddings via Ollama, and stores them in Qdrant for RAG applications.      
-[*Swift, Python, Rust*]        
-
-- **[marky](https://github.com/hansdoebel/marky)** — v0.0.1             
-A minimalist markdown viewer for macOS.     
-[*Swift*]     
-
-- **[bolo](https://github.com/hansdoebel/bolo)** — v0.0.1             
-A minimal Pomodoro timer for macOS that lives in your menu bar.     
-[*Swift*]     
+- **chunky**             
+A macOS app that converts documents into semantic vector chunks using Docling, Ollama, and Qdrant.     
+[*Python*, *Swift*, *Rust*]     
 
 <details>
 <summary>n8n community nodes</summary>    
@@ -49,12 +43,12 @@ A minimal Pomodoro timer for macOS that lives in your menu bar.
   Integrates Paperless.io with n8n for automating e-signature workflows and document processing.
 
 - **[n8n-nodes-sevalla](https://github.com/hansdoebel/n8n-nodes-sevalla)** — v1.0.0  
-  Integrates Sevalla with n8n for automating plattform operations.
+  Integrates Sevalla with n8n for automating platform operations.
 
 - **[n8n-nodes-ticketmaster](https://github.com/hansdoebel/n8n-nodes-ticketmaster)** — v0.0.1  
   Provides access to Ticketmaster's API from n8n to retrieve event data, performers, and ticket info.
 
-- **[n8n-nodes-ticktick](https://github.com/hansdoebel/n8n-nodes-ticktick)** — v2.1.0  
+- **[n8n-nodes-ticktick](https://github.com/hansdoebel/n8n-nodes-ticktick)** — v2.1.2  
   Integrates TickTick task management with n8n workflows for seamless to-do automation.
 
 - **[n8n-nodes-tripadvisor](https://github.com/hansdoebel/n8n-nodes-tripadvisor)** — v1.0.0  
@@ -66,6 +60,9 @@ A minimal Pomodoro timer for macOS that lives in your menu bar.
 
 - **[zed-mcp-qdrant](https://github.com/hansdoebel/zed-mcp-qdrant)**  
   Qdrant MCP server extension for Zed.   
+
+- **[zed-mcp-n8n](https://github.com/hansdoebel/zed-mcp-n8n)**  
+  n8n MCP server extension for Zed.   
          
 - **[zed-mcp-astro-docs](https://github.com/hansdoebel/zed-mcp-astro-docs)**  
   Astro documentation MCP server extension for Zed.
@@ -100,6 +97,7 @@ A minimal Pomodoro timer for macOS that lives in your menu bar.
 - [Deno](https://deno.com/)
 - [Convex](https://www.convex.dev/)
 - [Docling](https://www.docling.ai/)
+- [Rust](https://doc.rust-lang.org/stable/std/index.html)
 ---
 
 #### Statistics
@@ -108,4 +106,4 @@ A minimal Pomodoro timer for macOS that lives in your menu bar.
 
 ---
 
-*Last updated on January 20, 2026*
+*Last updated on February 03, 2026*
