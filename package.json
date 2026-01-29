@@ -2,10 +2,12 @@
   "name": "hansdoebel",
   "private": true,
   "type": "module",
+  "scripts": {
+    "prepare": "husky",
+    "uv": "bash scripts/update-versions.sh",
+    "vr": "bash scripts/validate-readme.sh"
+  },
   "devDependencies": {
     "husky": "^9.1.7"
-  },
-  "scripts": {
-    "prepare": "husky"
   }
 }

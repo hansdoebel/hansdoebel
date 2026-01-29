@@ -2,11 +2,18 @@
 
 README="README.md"
 
-if [[ -f "$README" ]]; then
-    CURRENT_DATE=$(date "+%B %d, %Y")
+if [[ ! -f "$README" ]]; then
+    exit 0
+fi
 
-    if git diff --cached --name-only | grep -q "^$README$"; then
-        sed -i '' "s/\*Last updated on .*/\*Last updated on $CURRENT_DATE\*/" "$README"
-        git add "$README"
-    fi
+# Update npm versions
+bash scripts/update-versions.sh
+
+# Update date
+CURRENT_DATE=$(date "+%B %d, %Y")
+sed -i '' "s/\*Last updated on .*/\*Last updated on $CURRENT_DATE\*/" "$README"
+
+# Stage if anything changed
+if ! git diff --quiet "$README"; then
+    git add "$README"
 fi

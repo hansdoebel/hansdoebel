@@ -20,12 +20,12 @@ if ! grep -q "#### Latest Projects" "$README"; then
     ERRORS=$((ERRORS + 1))
 fi
 
-if ! grep -q "#### What I Use Every Day" "$README"; then
+if ! grep -q "What I Use Every Day" "$README"; then
     echo "  ✗ Missing 'What I Use Every Day' section"
     ERRORS=$((ERRORS + 1))
 fi
 
-if ! grep -q "Currently Learning" "$README"; then
+if ! grep -q "What I'm Currently Learning" "$README"; then
     echo "  ✗ Missing 'What I'm Currently Learning' section"
     ERRORS=$((ERRORS + 1))
 fi
