@@ -1,79 +1,56 @@
 #!/bin/bash
 
 README="README.md"
-TEMP_DIR=$(mktemp -d)
 
-PACKAGES=(
+# npm name → README name (only for packages where they differ)
+RENAMES=(
     "n8n-nodes-usebouncer:n8n-nodes-bouncer"
-    "n8n-nodes-codeberg"
-    "n8n-nodes-daytona"
-    "n8n-nodes-dev"
     "n8n-nodes-dida:n8n-nodes-dida365"
-    "n8n-nodes-dnsimple"
-    "n8n-nodes-docling-serve"
-    "n8n-nodes-docusign"
-    "n8n-nodes-dub"
-    "n8n-nodes-lancedb"
-    "n8n-nodes-monday-pro"
-    "n8n-nodes-onoffice:n8n-nodes-onoffice-pro"
-    "n8n-nodes-paperless"
-    "n8n-nodes-planeso"
-    "n8n-nodes-postman"
-    "n8n-nodes-propstack"
-    "n8n-nodes-sevalla"
-    "n8n-nodes-ticketmaster"
-    "n8n-nodes-ticktick"
-    "n8n-nodes-tripadvisor"
-    "n8n-nodes-zeeg"
+    "n8n-nodes-devto:n8n-nodes-dev"
 )
 
-fetch_version() {
-    local entry="$1"
-    local temp_dir="$2"
-
-    if [[ "$entry" == *":"* ]]; then
-        npm_pkg="${entry%%:*}"
-        readme_pkg="${entry##*:}"
-    else
-        npm_pkg="$entry"
-        readme_pkg="$entry"
-    fi
-
-    version=$(curl -s "https://registry.npmjs.org/$npm_pkg/latest" | grep -o '"version":"[^"]*"' | head -1 | cut -d'"' -f4)
-
-    echo "$readme_pkg:$version" > "$temp_dir/$readme_pkg"
+resolve_readme_name() {
+    local npm_name="$1"
+    for rename in "${RENAMES[@]}"; do
+        if [[ "${rename%%:*}" == "$npm_name" ]]; then
+            echo "${rename##*:}"
+            return
+        fi
+    done
+    echo "$npm_name"
 }
 
-echo "Fetching latest versions from npm (parallel)..."
+echo "Fetching all packages from npm (single request)..."
+RESPONSE=$(curl -s "https://registry.npmjs.org/-/v1/search?text=maintainer:hansdoe&size=250")
 
-for entry in "${PACKAGES[@]}"; do
-    fetch_version "$entry" "$TEMP_DIR" &
-done
+PACKAGES=$(echo "$RESPONSE" | jq -r '.objects[] | select(.package.name | startswith("n8n-nodes-")) | "\(.package.name) \(.package.version)"')
 
-wait
+if [[ -z "$PACKAGES" ]]; then
+    echo "Error: no packages returned from npm"
+    exit 1
+fi
 
 echo "Updating README..."
 
-for entry in "${PACKAGES[@]}"; do
-    if [[ "$entry" == *":"* ]]; then
-        readme_pkg="${entry##*:}"
+SEEN_README_NAMES=""
+while IFS=' ' read -r npm_name version; do
+    [[ -z "$npm_name" ]] && continue
+    readme_name=$(resolve_readme_name "$npm_name")
+    SEEN_README_NAMES="$SEEN_README_NAMES $readme_name"
+
+    if grep -q "/hansdoebel/$readme_name)" "$README"; then
+        echo "  $readme_name: v$version"
+        sed -i '' "s|\($readme_name\)](https://\([^/]*\)/hansdoebel/$readme_name)\*\* — v[0-9.]*|\1](https://\2/hansdoebel/$readme_name)** — v$version|g" "$README"
     else
-        readme_pkg="$entry"
+        echo "  $readme_name: v$version (on npm, not in README)"
     fi
+done <<< "$PACKAGES"
 
-    if [[ -f "$TEMP_DIR/$readme_pkg" ]]; then
-        result=$(cat "$TEMP_DIR/$readme_pkg")
-        version="${result##*:}"
-
-        if [[ -n "$version" ]]; then
-            echo "  $readme_pkg: v$version"
-            sed -i '' "s|\($readme_pkg\)](https://\([^/]*\)/hansdoebel/$readme_pkg)\*\* — v[0-9.]*|\1](https://\2/hansdoebel/$readme_pkg)** — v$version|g" "$README"
-        else
-            echo "  $readme_pkg: (not found on npm)"
-        fi
+README_NAMES=$(grep -oE 'n8n-nodes-[a-z0-9-]+' "$README" | sort -u)
+for readme_name in $README_NAMES; do
+    if [[ " $SEEN_README_NAMES " != *" $readme_name "* ]]; then
+        echo "  WARN: $readme_name in README but not published on npm"
     fi
 done
-
-rm -rf "$TEMP_DIR"
 
 echo "Done!"
