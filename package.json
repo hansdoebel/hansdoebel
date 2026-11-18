@@ -5,7 +5,10 @@
   "scripts": {
     "prepare": "husky",
     "uv": "bash scripts/update-versions.sh",
-    "vr": "bash scripts/validate-readme.sh"
+    "vr": "bash scripts/validate-readme.sh",
+    "lint": "node --check scripts/update-versions.mjs && node --check scripts/update-versions.test.mjs && for file in scripts/*.sh .husky/pre-commit .husky/pre-push; do bash -n \"$file\" || exit; done",
+    "test": "node --test scripts/*.test.mjs",
+    "check": "npm run lint && npm test && npm run vr"
   },
   "devDependencies": {
     "husky": "^9.1.7"

@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
 
 README="README.md"
 ERRORS=0
@@ -41,8 +43,8 @@ if ! grep -qE "^\*Last updated on [A-Z][a-z]+ [0-9]{2}, [0-9]{4}\*$" "$README"; 
 fi
 
 while IFS= read -r line; do
-    if echo "$line" | grep -qE "n8n-nodes-[a-z-]+\)" && ! echo "$line" | grep -qE "— v[0-9]+\.[0-9]+"; then
-        echo "  ✗ Missing version for: $(echo "$line" | grep -oE 'n8n-nodes-[a-z-]+')"
+    if echo "$line" | grep -qE "n8n-nodes-[a-z0-9-]+\)" && ! echo "$line" | grep -qE "— v[0-9]+\.[0-9]+\.[0-9]+([+-][0-9A-Za-z.-]+)?([[:space:]]|$)"; then
+        echo "  ✗ Missing version for: $(echo "$line" | grep -oE 'n8n-nodes-[a-z0-9-]+')"
         ERRORS=$((ERRORS + 1))
     fi
 done < "$README"
