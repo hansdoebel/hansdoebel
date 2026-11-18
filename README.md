@@ -76,7 +76,7 @@ A Swift gRPC/REST client for Qdrant vector databases.
 - **[n8n-nodes-ticketmaster](https://github.com/hansdoebel/n8n-nodes-ticketmaster)** — v0.0.1  
   Provides access to Ticketmaster's API from n8n to retrieve event data, performers, and ticket info.
 
-- **[n8n-nodes-ticktick](https://github.com/hansdoebel/n8n-nodes-ticktick)** — v2.2.1  
+- **[n8n-nodes-ticktick](https://github.com/hansdoebel/n8n-nodes-ticktick)** — v2.3.0  
   Integrates TickTick task management with n8n workflows for seamless to-do automation.
 
 - **[n8n-nodes-tripadvisor](https://github.com/hansdoebel/n8n-nodes-tripadvisor)** — v1.0.0    
@@ -166,4 +166,4 @@ A Swift gRPC/REST client for Qdrant vector databases.
 
 ![NPM Downloads by package author](https://img.shields.io/npm-stat/dy/hansdoe?label=NPM%20Downloads&color=%232AA63E)
 
-*Last updated on May 23, 2026*
+*Last updated on November 18, 2026*

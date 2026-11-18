@@ -1,19 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-README="README.md"
-
-if [[ ! -f "$README" ]]; then
-    exit 0
+# Avoid staging unrelated, partially staged README edits.
+if ! git diff --quiet -- README.md; then
+    echo "Stage or stash README.md changes before committing." >&2
+    exit 1
 fi
-
-# Update npm versions
-bash scripts/update-versions.sh
-
-# Update date
-CURRENT_DATE=$(date "+%B %d, %Y")
-sed -i '' "s/\*Last updated on .*/\*Last updated on $CURRENT_DATE\*/" "$README"
-
-# Stage if anything changed
-if ! git diff --quiet "$README"; then
-    git add "$README"
-fi
+npm run uv
+npm run check
+git add -- README.md
