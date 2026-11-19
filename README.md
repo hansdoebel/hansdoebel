@@ -31,7 +31,7 @@ A Swift gRPC/REST client for Qdrant vector databases.
 - **[n8n-nodes-dnsimple](https://github.com/hansdoebel/n8n-nodes-dnsimple)** — v0.0.3  
   Integrates DNSimple with n8n for automating domain management.
 
-- **[n8n-nodes-docling-serve](https://github.com/hansdoebel/n8n-nodes-docling-serve)** — v0.0.5  
+- **[n8n-nodes-docling-serve](https://github.com/hansdoebel/n8n-nodes-docling-serve)** — v0.0.6  
   Integrates Docling Serve with n8n for document processing.
 
 - **[n8n-nodes-docusign](https://github.com/hansdoebel/n8n-nodes-docusign)** — v0.0.4  
@@ -166,4 +166,4 @@ A Swift gRPC/REST client for Qdrant vector databases.
 
 ![NPM Downloads by package author](https://img.shields.io/npm-stat/dy/hansdoe?label=NPM%20Downloads&color=%232AA63E)
 
-*Last updated on November 18, 2026*
+*Last updated on November 19, 2026*
